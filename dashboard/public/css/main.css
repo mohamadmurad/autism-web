@@ -3,6 +3,8 @@
     --black-mode-text: #8a8d93;
     --black-mode-bordar: #34373d;
     --black-mode-text-primary:#DB6574;
+    --black-mode-text-primary-hover:#d44658;
+    --black-mode-hover-background:#34373d;
     --normal-mode-backgroud :#fff;
     --normal-mode-text :#2d3035;
 }
@@ -71,4 +73,22 @@ button, input[type='submit'] {
     transform: translateY(2px);
 
     font-size: 1.2em;
+}
+
+.block {
+  padding: 20px;
+  background: var(--black-mode-backgroud);
+  color: var(--black-mode-text);
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  color: color-yiq(var(--black-mode-text-primary));
+  background-color: var(--black-mode-text-primary);
+  border-color: var(--black-mode-text-primary);
+}
+.btn-primary:hover {
+  color: color-yiq(var(--black-mode-text-primary-hover));
+  background-color: var(--black-mode-text-primary-hover);
+  border-color: var(--black-mode-text-primary-hover);
 }

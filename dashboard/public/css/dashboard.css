@@ -182,7 +182,7 @@ nav#sidebar li a {
 }
   
 nav#sidebar li a:hover {
-    background: #34373d;
+    background: var(--black-mode-hover-background);
 }
 
 nav#sidebar li a:hover i {
@@ -360,3 +360,99 @@ nav#sidebar li a i {
   
 
 
+/* page content */
+.page-content {
+  position: relative;
+  background: #22252a;
+  min-height: 100vh;
+  width: calc(100% - 280px);
+  padding: 0;
+  padding-bottom: 70px;
+}
+
+.page-content.active {
+  width: 100%;
+}
+
+.page-header {
+  padding: 20px 15px;
+  background: var(--black-mode-backgroud);
+  color: var(--black-mode-text);
+  margin-bottom: 30px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer .footer__block {
+  min-height: 70px;
+}
+
+/* profile  */
+
+
+
+.little-profile .pro-img {
+  margin-bottom: 20px;
+}
+
+.little-profile .pro-img img {
+  width: 128px;
+  height: 128px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+}
+
+.little-profile h1{
+  color: var(--black-mode-text);
+}
+
+.little-profile p{
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+.little-profile .btn-primary{
+  border-radius: 60px;
+  padding: 7px 18px;
+  margin-bottom: 20px;
+}
+
+.little-profile .numbers{
+  margin-top: 20px;
+}
+
+.little-profile .numbers h3{
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.card .nav-tabs{
+  border-bottom: 1px solid var(--black-mode-bordar);
+}
+.card .nav-tabs .nav-item .nav-link{
+  border: 0;
+  color: var(--black-mode-text);
+  background-color: var(--black-mode-backgroud);
+  border-bottom: 1px solid var(--black-mode-bordar);
+  -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.card .nav-tabs .nav-item .nav-link:hover{
+    background: var(--black-mode-hover-background);
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid var(--black-mode-bordar);
+}
+
+.card .nav-tabs .nav-item .nav-link.active{
+  color:#fff;
+  background-color: var(--black-mode-text-primary);
+  border: 0;
+  border-bottom: 1px solid var(--black-mode-text-primary);
+}
