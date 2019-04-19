@@ -8,7 +8,9 @@
     --normal-mode-backgroud :#fff;
     --normal-mode-text :#2d3035;
 }
-
+input {
+  outline: none;
+}
 i, span, strong {
     display: inline-block;
 }

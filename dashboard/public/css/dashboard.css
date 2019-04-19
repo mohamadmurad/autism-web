@@ -481,3 +481,72 @@ nav#sidebar li a i {
 #profile-content .show.active {
   display: block;
 }
+.form-material .form-control {
+  height: calc(2.4rem + 2px);
+  border: 1px solid #444951;
+  border-radius: 0;
+  color: var(--black-mode-text-primary);
+  padding: 0.45rem 0.75rem;
+}
+
+select.form-control{
+  background: transparent;
+}
+
+.form-group-material {
+  position: relative;
+  margin-bottom: 30px;
+}
+.form-group-material input.input-material {
+  width: 100%;
+  border: none;
+  display:block;
+  border-bottom: 1px solid #444951;
+  padding:10px 0;
+  background-color: transparent;
+  color: #8a8d93;
+  border-radius: 0;
+ 
+}
+
+.form-group-material input.input-material ~ label {
+  color: #aaa;
+  position: absolute;
+  top: 14px;
+  left: 0;
+  pointer-events:none;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-weight: 300;
+  z-index: 2;
+}
+
+input.input-material:focus {
+  border-color: var(--black-mode-text-primary);
+}
+
+input.input-material ~ label.active ,input.input-material:valid ~ label.active{
+  font-size: 0.85rem;
+  top: -10px;
+  color: var(--black-mode-text-primary);
+}
+
+
+
+.form-material .form-control:focus {
+  color: #979a9f;
+  border: none;
+  border-bottom: 1px solid var(--black-mode-text-primary);
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  float: none;
+}
+
+.form-material .form-control.is-invalid{
+  border-color:#dc3545;
+}
+
+.form-material .form-control.is-valid{
+  border-color:#28a745;
+}
