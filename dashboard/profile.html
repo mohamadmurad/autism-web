@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="../vendor/font-awesome/css/all.css">
-
-    <link rel="stylesheet" href="./public/css/fonts.css">
-    <link rel="stylesheet" href="./public/css/main.css">
+    <link rel="stylesheet" href="../public/css/preloader.css">
+    <link rel="stylesheet" href="../public/css/fonts.css">
+    <link rel="stylesheet" href="../public/css/main.css">
     <link rel="stylesheet" href="./public/css/dashboard.css">
 
     <!-- Tweaks for older IEs-->
@@ -22,6 +22,11 @@
 </head>
 
 <body>
+        <div class="preloader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+            </svg>
+        </div>
     <header class="header">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -77,12 +82,11 @@
                 <li>
                     <a href="#ManageUsers" aria-expanded="false" data-toggle="collapse">
                         <span class="collapse-after-right fas fa-chevron-left"></span>
-                        <span class="collapse-after-down fas fa-chevron-down"></span>
                         <i class="fas fa-users-cog"></i>
                         Users
                     </a>
                     <ul id="ManageUsers" class="collapse list-unstyled ">
-                        <li><a href="#"><i class="fa fa-users"></i>All User</a></li>
+                        <li><a href="allUser.html"><i class="fa fa-users"></i>All User</a></li>
                         <li><a href="#"><i class="fa fa-user-plus"></i>Add User</a></li>
                     </ul>
                 </li>
@@ -107,13 +111,17 @@
         <div class="page-content">
             <div class="page-header">
                 <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item "> <a class="nav-link active" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home">Activity</a> </li>
-                    <li class="nav-item" aria-controls="profile"> <a class="nav-link" data-toggle="tab" href="#profile"
-                            role="tab">Profile</a>
+                    <li class="nav-item ">
+                        <a class="nav-link active" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile">Profile</a>
+                         </li>
+                    <li class="nav-item" >
+                         <a class="nav-link" data-toggle="tab" href="#pecs"
+                            role="tab" aria-controls="pecs">PECS</a>
                     </li>
-                    <li class="nav-item" aria-controls="settings"> <a class="nav-link" data-toggle="tab"
-                            href="#settings" role="tab">Settings</a>
+                    <li class="nav-item" >
+                         <a class="nav-link" data-toggle="tab" href="#settings"
+                          role="tab" aria-controls="settings">Acount Settings</a>
                     </li>
                 </ul>
             </div>
@@ -121,7 +129,8 @@
             <section id="profile-content" class="no-padding-top no-padding-bottom">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="tab-pane show active" id="home" role="tabpanel">
+
+                        <div class="tab-pane show active" id="profile" role="tabpanel">
                             <div class="col-lg-4 col-xlg-3 col-md-5">
                                 <div class="card block">
 
@@ -151,7 +160,7 @@
                                     </div>-->
                         </div>
 
-                        <div class="tab-pane show" id="profile" role="tabpanel">
+                        <div class="tab-pane show" id="pecs" role="tabpanel">
                             <div class="col-lg-4 col-xlg-3 col-md-5">
                                 <div class="card block">
 
@@ -239,7 +248,7 @@
 
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="./public/js/main.js"></script>
+    <script src="../public/js/main.js"></script>
     <script src="./public/js/dashboard.js"></script>
     <script>
         $("#logout").on("click", function () {
