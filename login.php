@@ -151,7 +151,52 @@
                 account? </small>
                 <a href="register.html" class="signup">Signup</a>
 
+                <div class="error" id="error-alert">
 
+                <?php
+                    if(Input::exists()){
+                        if(isset($validation)){
+
+                            if($validation->passed()){
+
+                            if(!$login){
+                                
+                            }
+
+
+                            switch ($login) {
+                                
+                                case 0:{
+                                    echo '<div class="alert alert-danger" role="alert">
+                                        UserName Or Password Not Match
+                                        </div>';
+                                }
+                                    
+                                    break;
+
+                                default:
+                                    
+                                    break;
+                                }
+                    
+                            }else{
+                            foreach ($validation->errors() as $error) {
+                                echo '<div class="alert alert-danger" role="alert">
+                                        '.  $error .'
+                                        </div>';
+                            }
+                    
+                            }
+
+                        }
+                        
+                    }
+                    ?>
+                    
+                    
+                        
+
+                </div>
 
         </div>
 
