@@ -98,7 +98,7 @@ button, input[type='submit'] {
 }
 
 .btn-primary {
-  color: color-yiq(var(--black-mode-text-primary));
+  color: var(--normal-mode-backgroud);
   background-color: var(--black-mode-text-primary);
   border-color: var(--black-mode-text-primary);
 }
@@ -163,7 +163,7 @@ select.form-control{
   position: relative;
   margin-bottom: 30px;
 }
-input.input-material {
+input.input-material , select.input-material {
   width: 100%;
   border: none;
   display:block;
@@ -173,6 +173,11 @@ input.input-material {
   color: #8a8d93;
   border-radius: 0;
  
+}
+label{
+  color: #aaa;
+  font-weight: 300;
+
 }
 
 input.input-material ~ label {
