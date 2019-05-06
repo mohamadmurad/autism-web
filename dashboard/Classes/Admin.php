@@ -2,7 +2,7 @@
 /**
 * 
 */
-class User {
+class Admin {
 	
 	private $_db,
 			$_data = null,
@@ -50,8 +50,8 @@ class User {
 	private function find($user = null){
 
 		if($user){
-			$fild = (is_numeric($user)) ? 'user_id' : 'username';
-			$data = $this->_db->get('users',array($fild,'=',$user));
+			$fild = (is_numeric($user)) ? 'admin_id' : 'username';
+			$data = $this->_db->get('admin',array($fild,'=',$user));
 
 			if($data ->count()){
 				$this->_data = $data->first();
@@ -86,7 +86,7 @@ class User {
 
 							
 
-							Sesstion::put($this->_sesstion_name,$this->data()->user_id);
+							Sesstion::put($this->_sesstion_name,$this->data()->admin_id);
 /*
 							if($remember){
 
@@ -110,7 +110,7 @@ class User {
 									
 								Cookie::put($this->_cookie_name,$hash,$this->_cookie_expiry);
 
-							}*/
+                            }*/
 
 							return true;
 
@@ -119,10 +119,10 @@ class User {
 						}else{
 							return 'active';
 						}
-/*
-					}else{
+
+					/*}else{
 						return 'confirm';
-					}*/
+                    }*/
 
 					
 				//	

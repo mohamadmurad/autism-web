@@ -1,13 +1,13 @@
 <?php
    require_once 'core/init.php';
 
-  // $temp = new User();
+   $temp = new User();
    $tempadmin = new Admin();
-/*
+
    if($temp->isLoggedIn()){
         Redirect::to('myacount/');
         exit();
-   }*/
+   }
 
     if($tempadmin->isLoggedIn()){
         Redirect::to('dashboard/');
@@ -33,15 +33,25 @@
         if($validation->passed()){
 
             $login_type = Input::get('login_type');
-            
+            $login = null;
+            $remember = (Input::get('remember') === 'on') ? true : false;
             switch($login_type){
 
-                case 'user' :{}break;
+                case 'user' :{
+                    $user = new User();
+
+                    $login = $user->login(Input::get('username'),Input::get('password'),$remember);
+                    switch ($login){
+                        case 1 :{Redirect::to('myAcount/');} break;
+                        default:
+                     
+                        break;
+                    }
+
+                }break;
                 case 'admin':{
 
                     $admin = new Admin();
-
-                    $remember = (Input::get('remember') === 'on') ? true : false;
 
                     $login = $admin->login(Input::get('username'),Input::get('password'),$remember);
                     
@@ -57,14 +67,7 @@
 
             }
   
-          //$user = new User();
-  
-         // $remember = (Input::get('remember') === 'on') ? true : false;
-  
-  
-  
-         // $login = $user->login(Input::get('username'),Input::get('password'),$remember);
-  
+         
          /*
           switch ($login) {
             case 1 :
