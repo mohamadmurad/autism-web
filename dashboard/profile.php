@@ -7,7 +7,14 @@
    
     if($tempadmin->isLoggedIn()){
 
-        $pageTite = 'Autism | Admin Dashboard';
+
+        if(Input::exists("get")){
+            
+        
+        $profile_info = Data::get_user_info(Input::get('u'));
+
+        
+        $pageTite =  $profile_info->username . " | Profile";
 
         include 'includes/Html/dash_header.php';
     
@@ -40,9 +47,9 @@
                                 <div class="card block">
 
                                     <div class="card-block little-profile text-center">
-                                        <div class="pro-img"><img src="./public/img/avatar-1.jpg" alt="user"></div>
-                                        <h1 class="h5">Angela Dominic</h1>
-                                        <p>22 year</p>
+                                        <div class="pro-img"><img src="../public/userImg/<?php echo $profile_info->profile_img; ?>" alt="user"></div>
+                                        <h1 class="h5"><?php echo $profile_info->full_name; ?></h1>
+                                        <p><?php echo $profile_info->birth_date; ?></p>
                                         <a href="javascript:void(0)" class="btn btn-primary btn-md">Follow</a>
                                         <div class="numbers row text-center">
                                             <div class="col-lg-4 col-md-4 m-t-20">
@@ -86,42 +93,35 @@
                                         <form class="form-horizontal form-material" action="" method="">
                                             <div class=" form-group-material">
 
-
-                                                <input type="text" class="form-control input-material is-invalid">
+                                                <input type="text" class="input-material" name="full_name" value="<?php echo $profile_info->full_name; ?>">
                                                 <label class="label-material">Full Name</label>
                                             </div>
                                             <div class=" form-group-material">
 
-                                                <input type="email" class="form-control input-material is-valid"" name="
-                                                    example-email" id="example-email">
-                                                <label for="example-email" class="label-material">Email</label>
+                                                <input type="text" class="input-material" name="username" id="username" value="<?php echo $profile_info->username; ?>">
+                                                <label for="example-email" class="label-material">UserName</label>
                                             </div>
                                             <div class="form-group-material">
 
-
-                                                <input type="password" value="password"
-                                                    class="form-control input-material">
+                                                <input type="password"  class="input-material" name="password">
                                                 <label class="label-material">Password</label>
                                             </div>
                                             <div class=" form-group-material">
+                                                <input type="date" class="input-material" value="<?php echo $profile_info->birth_date; ?>">
+                                                <label class="label-material">BirthDate</label>
+                                            </div>
 
-
-                                                <input type="text" class="form-control input-material">
-                                                <label class="label-material">Phone No</label>
+                                            <h5>PECS Level</h5>
+                                            <div class=" ">
+                                                <input id="p_l1" type="radio" class="radio-template" name="p_level" value="0" <?php echo ($profile_info->user_pecs_level == 1 )? "checked" :  ""; ?>>
+                                                <label for="p_l1" class="label-material">Level 1</label>
                                             </div>
 
                                             <div class=" form-group-material">
-                                                <label class="label-material">Select Country</label>
-
-                                                <select class="form-control form-control-line">
-                                                    <option>London</option>
-                                                    <option>India</option>
-                                                    <option>Usa</option>
-                                                    <option>Canada</option>
-                                                    <option>Thailand</option>
-                                                </select>
-
+                                                <input id="p_l2" type="radio" class="radio-template" name="p_level" value="1" <?php echo ($profile_info->user_pecs_level == 2 )? "checked" :  ""; ?>>
+                                                <label for="p_l2" class="label-material">Level 2</label>
                                             </div>
+
                                             <div class="form-group">
 
                                                 <button class="btn btn-primary btn-md">Update Profile</button>
@@ -152,6 +152,9 @@
 
 <?php
        include 'includes/Html/dash_footer.php'; 
+        }else{
+            Redirect::to('index.php');
+        }
     }else{
         Redirect::to('../login.php');
     }

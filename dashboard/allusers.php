@@ -35,24 +35,34 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email</th>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>BirthDate</th>
+                                            <th>PECS Level</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>mohamad</td>
-                                            <td>murad</td>
-                                            <td>mhdite7@gmail.com</td>
-                                        </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>mouaz</td>
-                                            <td>Herafi</td>
-                                            <td>mouaz@gmail.com</td>
-                                        </tr>
+
+                                    <?php 
+
+                                    $allusers = Data::get_all_users();
+
+                                    foreach($allusers as $user){
+
+                                        echo "<tr class='clickable-row' data-href='profile.php?u=".$user->user_id."'>";
+                                        echo "<th scope='row'>". $user->user_id ."</th>";
+                                        echo "<td>". $user->full_name ."</td>";
+                                        echo "<td>". $user->username ."</td>";
+                                        echo "<td>". $user->birth_date ."</td>";
+                                        echo "<td>". $user->user_pecs_level ."</td>";
+                                        
+                                        echo "</tr>\n";
+                                    }
+                                    
+                                     
+                                    
+                                    ?>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -63,6 +73,9 @@
                 </div>
 
             </section>
+            <script>
+            
+            </script>
         </div>
 
     </div>

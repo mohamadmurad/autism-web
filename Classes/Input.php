@@ -12,7 +12,7 @@
 				case 'get': return (!empty($_GET)) ? true : false;
 					break;
 				
-				default: return fasle;
+				default: return false;
 					break;
 			}
 
