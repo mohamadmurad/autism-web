@@ -133,6 +133,32 @@ class User {
 		return false;
 	}
 
+
+	public function login_api($username,$password){
+		
+
+			$user = $this->find($username);
+
+			if($user){
+				
+				if($this->data()->password === Hash::make($password, $this->data()->salt)){
+			
+						if($this->data()->active == 1){
+	
+							return $this->data()->user_pecs_level;
+						}else{
+							return false;
+						}
+
+				}else{
+					return false;
+				}
+			}
+		
+
+		return false;
+	}
+
 	public function confirm($username = null , $hash = null){
 		if($username && $hash){
 			$data = $this->_db->query('SELECT * FROM users WHERE username = ? AND confirm_hash = ?',array(
