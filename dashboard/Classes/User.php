@@ -40,11 +40,7 @@ class User {
 			throw new Exception("ther was a problem creating an acount");
 		}
 
-		$p = array('user_id' => $this->_db->pdo()->lastInsertId());
-		$privilige+= $p;
-		if(!$this->_db->insert('user_privileges',$privilige)){
-			throw new Exception("ther was a problem creating an acount");
-		}
+		
 	}
 
 	private function find($user = null){

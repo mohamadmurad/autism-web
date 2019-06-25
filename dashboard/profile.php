@@ -88,9 +88,12 @@
 
                         <div class="tab-pane show" id="settings" role="tabpanel">
                             <div class="col-lg-12 col-xlg-12 col-md-12">
+                            <div class="alert alert-success" style="display:none;" id="succ_alert_update_info">Information Updated :)</div>
+                            <div class="alert alert-danger" style="display:none;" id="danger_alert_update_info">Information Updated :)</div>
+
                                 <div class="card block">
                                     <div class="card-block">
-                                        <form class="form-horizontal form-material" action="" method="">
+                                        <form id="edit-form" class="form-horizontal form-material" action="" method="">
                                             <div class=" form-group-material">
 
                                                 <input type="text" class="input-material" name="full_name" value="<?php echo $profile_info->full_name; ?>">
@@ -101,30 +104,28 @@
                                                 <input type="text" class="input-material" name="username" id="username" value="<?php echo $profile_info->username; ?>">
                                                 <label for="example-email" class="label-material">UserName</label>
                                             </div>
-                                            <div class="form-group-material">
-
-                                                <input type="password"  class="input-material" name="password">
-                                                <label class="label-material">Password</label>
-                                            </div>
+                                    
                                             <div class=" form-group-material">
-                                                <input type="date" class="input-material" value="<?php echo $profile_info->birth_date; ?>">
+                                                <input type="date" name="date" class="input-material" value="<?php echo $profile_info->birth_date; ?>">
                                                 <label class="label-material">BirthDate</label>
                                             </div>
 
                                             <h5>PECS Level</h5>
                                             <div class=" ">
-                                                <input id="p_l1" type="radio" class="radio-template" name="p_level" value="0" <?php echo ($profile_info->user_pecs_level == 1 )? "checked" :  ""; ?>>
+                                                <input id="p_l1" type="radio" class="radio-template" name="p_level" value="1" <?php echo ($profile_info->user_pecs_level == 1 )? "checked" :  ""; ?>>
                                                 <label for="p_l1" class="label-material">Level 1</label>
                                             </div>
 
                                             <div class=" form-group-material">
-                                                <input id="p_l2" type="radio" class="radio-template" name="p_level" value="1" <?php echo ($profile_info->user_pecs_level == 2 )? "checked" :  ""; ?>>
+                                                <input id="p_l2" type="radio" class="radio-template" name="p_level" value="2" <?php echo ($profile_info->user_pecs_level == 2 )? "checked" :  ""; ?>>
                                                 <label for="p_l2" class="label-material">Level 2</label>
                                             </div>
 
                                             <div class="form-group">
+                                         
+                                            <input type="hidden" class="input-material" name="user_id" value="<?php echo Input::get('u') ?>">
 
-                                                <button class="btn btn-primary btn-md">Update Profile</button>
+                                                <button type="submit" class="btn btn-primary btn-md">Update Profile</button>
 
                                             </div>
                                         </form>
