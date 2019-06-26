@@ -2,16 +2,12 @@
    require_once 'core/init.php';
 
 
-   $tempadmin = new Admin();
+   $user = new User();
 
    
-    if($tempadmin->isLoggedIn()){
-
-
-        if(Input::exists("get")){
-            
-        
-        $profile_info = Data::get_user_info(Input::get('u'));
+    if($user->isLoggedIn()){
+             
+        $profile_info = Data::get_user_info( $user->data()->user_id);
 
         
         $pageTite =  $profile_info->username . " | Profile";
@@ -20,7 +16,7 @@
     
         include 'includes/Html/dash_navbar.php';
 ?>
-        <div class="page-content">
+        <div class="page-content" style="width:100%;">
             <div class="page-header">
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                     <li class="nav-item ">
@@ -94,21 +90,7 @@
                                 <div class="card block">
                                     <div class="card-block">
                                         <form id="edit-form" class="form-horizontal form-material" action="" method="">
-                                            <div class=" form-group-material">
-
-                                                <input type="text" class="input-material" name="full_name" value="<?php echo $profile_info->full_name; ?>">
-                                                <label class="label-material">Full Name</label>
-                                            </div>
-                                            <div class=" form-group-material">
-
-                                                <input type="text" class="input-material" name="username" id="username" value="<?php echo $profile_info->username; ?>">
-                                                <label for="example-email" class="label-material">UserName</label>
-                                            </div>
-                                    
-                                            <div class=" form-group-material">
-                                                <input type="date" name="date" class="input-material" value="<?php echo $profile_info->birth_date; ?>">
-                                                <label class="label-material">BirthDate</label>
-                                            </div>
+                                           
 
                                             <h5>PECS Level</h5>
                                             <div class=" ">
@@ -122,8 +104,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                         
-                                            <input type="hidden" class="input-material" name="user_id" value="<?php echo Input::get('u') ?>">
+                                            <input type="hidden" class="input-material" name="user_id" value="<?php echo $user->data()->user_id ?>">
 
                                                 <button type="submit" class="btn btn-primary btn-md">Update Profile</button>
 
@@ -153,9 +134,7 @@
 
 <?php
        include 'includes/Html/dash_footer.php'; 
-        }else{
-            Redirect::to('index.php');
-        }
+        
     }else{
         Redirect::to('../login.php');
     }
