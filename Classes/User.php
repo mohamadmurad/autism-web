@@ -82,7 +82,7 @@ class User {
 
 					//if($this->data()->confirmed == 1){
 
-						if($this->data()->active == 1){
+					//	if($this->data()->active == 1){
 
 							
 
@@ -116,9 +116,9 @@ class User {
 
 
 
-						}else{
+					/*	}else{
 							return 'active';
-						}
+						}*/
 /*
 					}else{
 						return 'confirm';

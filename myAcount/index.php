@@ -74,15 +74,22 @@
                         </div>
 
                         <div class="tab-pane show" id="pecs" role="tabpanel">
-                            <div class="col-lg-4 col-xlg-3 col-md-5">
+                            <div class="col-lg-6 col-xlg-6 col-md-12" style="float:left;">
                                 <div class="card block">
 
+                                     <div id="date_num_of_attempts_chart"></div>
 
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-xlg-9 col-md-7">
+                            <div class="col-lg-6 col-xlg-6 col-md-12" style="float:right;">
                                 <div class="card block">
-
+                                    <div class="">
+                                        <h1 class="h5 user_info"><span>Level : </span> 1</h1>
+                                        <hr>
+                                        <h1 class="h5 user_info"><span>Scoure : </span> 500</h1>
+                                        <hr>
+                                        <h1 class="h5 user_info"><span>Number of Questions is Answered: </span> 50 <span> Of </span> 100 <span> Question</span></h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +145,8 @@
             </footer>
         </div>
     </div>
+
+  
 
 <?php
        include 'includes/Html/dash_footer.php'; 

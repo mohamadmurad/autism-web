@@ -30,56 +30,39 @@
                                 }else{
                                     echo "false";
                                 }	
-                            }
-                                
-								break;
+                            }break;
 								
-								case 'update-user-level':{
+							case 'update-user-level':{
 
-									$filedss= array(
-										
-										'user_pecs_level'	=> Input::get('p_level'),
-									);
-	
-									if(DB::getInstance()->update('users',array(
-											 'id_field_name' => 'user_id',
-											 'id_value' => Input::get('user_id')
-											 ),
-											 $filedss)){
-										echo 'true';
-									}else{
-										echo "false";
-									}	
-								}
+								$filedss= array(
 									
-									break;
+									'user_pecs_level'	=> Input::get('p_level'),
+								);
+
+								if(DB::getInstance()->update('users',array(
+											'id_field_name' => 'user_id',
+											'id_value' => Input::get('user_id')
+											),
+											$filedss)){
+									echo 'true';
+								}else{
+									echo "false";
+								}	
+							}break;
 			    			
-			    				case 'get_info':{
-			    				
+							case 'get_info':{
+								$data = DB::getInstance()->get('users',array('user_id','=',intval(Input::get('u_id'))));
+								echo json_encode($data->results());
+								
+							}break;
+
+
+							case 'get_users_level_percent':{
+								$data = DB::getInstance()->query("SELECT user_pecs_level level, count(*) c FROM users GROUP by user_pecs_level");;
+				
+								echo json_encode($data->results());
 									
-
-			    						$data = DB::getInstance()->get('users',array('user_id','=',intval(Input::get('u_id'))));
-
-			    						//$output = getContactOutPut($data->results(),$temp->data()->group_id,$temp->privilige());
-
-							
-										echo json_encode($data->results());
-
-
-
-			    			
-			    					
-			    				}
-			    					
-			    					break;
-			    				case 'get-pages-users':{
-			    					if($temp->isLoggedIn()){
-			    						$data = DB::getInstance()->query('SELECT count(*) AS total FROM users');
-			    						echo ceil($data->first()->total/$total_req_per_page);
-			    					}else{exit();}
-			    						
-			    				}
-								break;
+							}break;
 
 								case 'get-data-users':{
 									if(Input::get('page')){

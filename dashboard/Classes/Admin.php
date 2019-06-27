@@ -82,7 +82,7 @@ class Admin {
 
 					//if($this->data()->confirmed == 1){
 
-						if($this->data()->active == 1){
+					//	if($this->data()->active == 1){
 
 							
 
@@ -116,9 +116,9 @@ class Admin {
 
 
 
-						}else{
+					/*	}else{
 							return 'active';
-						}
+						}*/
 
 					/*}else{
 						return 'confirm';

@@ -24,7 +24,7 @@
                         'full_name'=> Input::get('full_name'),
                         'salt'     => $salt,
                         'join_date' => date('Y=m-d H:i:s'),
-                        'active'    => 1,
+                       
                         'birth_date' => Input::get('date'),
                         'user_pecs_level' => 1,
                         'created_by' =>  $tempadmin->data()->admin_id,
