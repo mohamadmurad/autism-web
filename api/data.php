@@ -3,13 +3,13 @@
 	require_once 'core/init.php';
 	header('Content-Type: text/html; charset=utf-8');
 	$temp = new User();
-
-	if($temp->isLoggedIn()){
-
+	$temp1 = new Admin();
+	if($temp->isLoggedIn() || $temp1->isLoggedIn()){
+		
 		if(Input::exists()){
-
+			
 			    	if(Input::get('op')){
-
+				
 			    		$op = Input::get('op');
 			    		switch ($op) {
                             case 'update-user-info':{
@@ -32,22 +32,40 @@
                                 }	
                             }
                                 
-                                break;
+								break;
+								
+								case 'update-user-level':{
+
+									$filedss= array(
+										
+										'user_pecs_level'	=> Input::get('p_level'),
+									);
+	
+									if(DB::getInstance()->update('users',array(
+											 'id_field_name' => 'user_id',
+											 'id_value' => Input::get('user_id')
+											 ),
+											 $filedss)){
+										echo 'true';
+									}else{
+										echo "false";
+									}	
+								}
+									
+									break;
 			    			
-			    				case 'get-data':{
-			    					if(Input::get('page')){
-			    						$start = (Input::get('page') - 1) * $total_req_per_page;
+			    				case 'get_info':{
+			    				
+									
 
-			    						$data = DB::getInstance()->query('SELECT * FROM contacts LIMIT ' . $start . ' , ' . $total_req_per_page);
+			    						$data = DB::getInstance()->get('users',array('user_id','=',intval(Input::get('u_id'))));
 
-			    						$output = getContactOutPut($data->results(),$temp->data()->group_id,$temp->privilige());
+			    						//$output = getContactOutPut($data->results(),$temp->data()->group_id,$temp->privilige());
 
-			    						echo $output;
+							
+										echo json_encode($data->results());
 
 
-			    					}else{
-			    						exit();
-			    					}
 
 			    			
 			    					
@@ -342,7 +360,7 @@
 								
 
 			    				default:
-			    					
+			    					echo "error";
 			    					exit();
 			    					break;
 			    					

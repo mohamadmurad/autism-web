@@ -24,16 +24,16 @@
             <div class="page-header">
                 <ul class="nav nav-tabs profile-tab" role="tablist">
                     <li class="nav-item ">
-                        <a class="nav-link active" data-toggle="tab" href="#profile" role="tab"
-                            aria-controls="profile">Profile</a>
+                        <a id="profile_btn" class="nav-link active" data-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile">Information</a>
                          </li>
                     <li class="nav-item" >
-                         <a class="nav-link" data-toggle="tab" href="#pecs"
-                            role="tab" aria-controls="pecs">PECS</a>
+                         <a id="game_btn" class="nav-link" data-toggle="tab" href="#pecs"
+                            role="tab" aria-controls="pecs">Game Results</a>
                     </li>
                     <li class="nav-item" >
-                         <a class="nav-link" data-toggle="tab" href="#settings"
-                          role="tab" aria-controls="settings">Acount Settings</a>
+                         <a id="edit_info_btn" class="nav-link" data-toggle="tab" href="#settings"
+                          role="tab" aria-controls="settings">Edit Information</a>
                     </li>
                 </ul>
             </div>
@@ -43,33 +43,38 @@
                     <div class="row">
 
                         <div class="tab-pane show active" id="profile" role="tabpanel">
-                            <div class="col-lg-4 col-xlg-3 col-md-5">
+                            <div class="col-lg-4 col-xlg-3 col-md-5" style="float: left;">
                                 <div class="card block">
 
                                     <div class="card-block little-profile text-center">
                                         <div class="pro-img"><img src="../public/userImg/<?php echo $profile_info->profile_img; ?>" alt="user"></div>
-                                        <h1 class="h5"><?php echo $profile_info->full_name; ?></h1>
-                                        <p><?php echo $profile_info->birth_date; ?></p>
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-md">Follow</a>
+                                        
+                                        <h1 class="h5" id="h1_full_name"><?php echo $profile_info->full_name; ?></h1>
+
+                                        <p id="p_birth_date"><?php echo $profile_info->birth_date; ?></p>
+
+                                
                                         <div class="numbers row text-center">
-                                            <div class="col-lg-4 col-md-4 m-t-20">
-                                                <h3 class="m-b-0 font-light">1099</h3><small>Articles</small>
+                                            <div class="col-lg-6 col-md-6 m-t-20">
+                                                <h3 class="m-b-0 font-light">1099</h3><small>Scoure</small>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 m-t-20">
-                                                <h3 class="m-b-0 font-light">23,469</h3><small>Followers</small>
+                                            <div class="col-lg-6 col-md-6 m-t-20">
+                                                <h3 class="m-b-0 font-light">2</h3><small>Level</small>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 m-t-20">
-                                                <h3 class="m-b-0 font-light">6035</h3><small>Following</small>
-                                            </div>
+                                        
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div class="col-lg-8 col-xlg-9 col-md-7">
+                            <div class="col-lg-8 col-xlg-9 col-md-7" style="float:right;">
                                         <div class="card block">
-                                            
+                                            <h1 class="h5 user_info" id="h1_username"><span>Username : </span><?php echo " ". $profile_info->username; ?></h1>
+                                            <hr>
+                                            <h1 class="h5 user_info" id="h1_join_date"><span>Join Date : </span><?php echo " ". $profile_info->join_date; ?></h1>
+                                            <hr>
+                                            <h1 class="h5 user_info" id="h1_user_pecs_level"><span>PECS LEVEL : </span><?php echo " ". $profile_info->user_pecs_level; ?></h1>
                                         </div>
-                                    </div>-->
+                                    </div>
                         </div>
 
                         <div class="tab-pane show" id="pecs" role="tabpanel">
@@ -123,7 +128,7 @@
 
                                             <div class="form-group">
                                          
-                                            <input type="hidden" class="input-material" name="user_id" value="<?php echo Input::get('u') ?>">
+                                            <input id="u_id" type="hidden" class="input-material" name="user_id" value="<?php echo Input::get('u') ?>">
 
                                                 <button type="submit" class="btn btn-primary btn-md">Update Profile</button>
 
