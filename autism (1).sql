@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
 -- version 4.7.7
+-- phpMyAdmin SQL Dump
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2019 at 09:50 AM
+-- Generation Time: Jun 27, 2019 at 07:04 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -35,17 +35,30 @@ CREATE TABLE `admin` (
   `password` varchar(255) NOT NULL,
   `full_name` varchar(255) NOT NULL,
   `join_date` date NOT NULL,
-  `active` tinyint(1) NOT NULL,
-  `salt` varchar(255) NOT NULL,
-  `recover_hash` varchar(255) DEFAULT NULL
+  `salt` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `email`, `username`, `password`, `full_name`, `join_date`, `active`, `salt`, `recover_hash`) VALUES
-(2, 'mhdite7@gmail.com', 'mhdite7', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'mohamad murad', '2019-05-05', 1, 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', NULL);
+INSERT INTO `admin` (`admin_id`, `email`, `username`, `password`, `full_name`, `join_date`, `salt`) VALUES
+(2, 'mhdite7@gmail.com', 'mhdite7', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'mohamad murad', '2019-05-05', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answers`
+--
+
+CREATE TABLE `answers` (
+  `a_id` int(11) NOT NULL,
+  `q_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `num_of_attempts` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
 
 -- --------------------------------------------------------
 
@@ -124,6 +137,18 @@ INSERT INTO `pecs` (`id`, `name`, `Image`, `parent`, `ِAudio`, `level1`, `fav`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `q_id` int(11) NOT NULL,
+  `q_name` varchar(255) NOT NULL,
+  `q_answer` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -135,10 +160,8 @@ CREATE TABLE `users` (
   `join_date` date NOT NULL,
   `birth_date` date NOT NULL,
   `salt` varchar(255) NOT NULL,
-  `recover_hash` varchar(255) DEFAULT NULL,
   `user_pecs_level` tinyint(1) NOT NULL,
   `created_by` int(11) NOT NULL,
-  `active` tinyint(1) NOT NULL,
   `profile_img` varchar(255) NOT NULL DEFAULT 'avatar.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,10 +169,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `full_name`, `join_date`, `birth_date`, `salt`, `recover_hash`, `user_pecs_level`, `created_by`, `active`, `profile_img`) VALUES
-(1, 'maram', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'maram bakarr', '2019-05-06', '2019-05-06', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', NULL, 1, 2, 1, 'avatar.png'),
-(2, 'maram2', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'mouaz Herafi', '2019-05-13', '2019-05-08', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', NULL, 1, 2, 1, 'avatar.png'),
-(3, 'mohamadsssss', 'c80c93b3d9a931f724589f37b41317d688299660', 'maram1211dddddddddddddd', '2019-06-25', '2019-06-12', 'HTr#!flL3wJ*cS*$MB9nyUCRX7HM3ijP', NULL, 1, 2, 1, 'avatar.png');
+INSERT INTO `users` (`user_id`, `username`, `password`, `full_name`, `join_date`, `birth_date`, `salt`, `user_pecs_level`, `created_by`, `profile_img`) VALUES
+(1, 'maram', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'maram bakarr', '2019-05-06', '2000-05-06', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', 2, 2, 'avatar.png'),
+(2, 'maram2', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'mouaz Herafi', '2019-05-13', '2005-05-08', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', 1, 2, 'avatar.png'),
+(3, 'mhd', 'c80c93b3d9a931f724589f37b41317d688299660', 'mohamad', '2019-06-25', '2006-06-12', 'HTr#!flL3wJ*cS*$MB9nyUCRX7HM3ijP', 1, 2, 'avatar.png'),
+(4, 'sdsd', '7b54b32a1531996192ab80a8acfe2039ca930765', 'sss', '2019-06-27', '2019-06-07', '6o1@#W!u@xsy7onf09SKDshuiQKaSsVO', 1, 2, 'avatar.png');
 
 --
 -- Indexes for dumped tables
@@ -164,11 +188,25 @@ ALTER TABLE `admin`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `answers`
+--
+ALTER TABLE `answers`
+  ADD PRIMARY KEY (`a_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `q_id` (`q_id`);
+
+--
 -- Indexes for table `pecs`
 --
 ALTER TABLE `pecs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pecs_user` (`user_id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`q_id`);
 
 --
 -- Indexes for table `users`
@@ -189,20 +227,39 @@ ALTER TABLE `admin`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `answers`
+--
+ALTER TABLE `answers`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `pecs`
 --
 ALTER TABLE `pecs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `answers`
+--
+ALTER TABLE `answers`
+  ADD CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `answers_ibfk_2` FOREIGN KEY (`q_id`) REFERENCES `questions` (`q_id`);
 
 --
 -- Constraints for table `pecs`
