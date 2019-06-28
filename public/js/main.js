@@ -34,3 +34,15 @@ $(function(){
     
 });
     
+$(document).ready(function(){
+    $(".home_header").height($(window).height());
+
+    var paddingTop = ($(".home_header").height() / 2 ) - $(".home_header_text").height()/2;
+    $(".home_header_text").css("padding-top",paddingTop);
+});
+
+$(window).on("resize",function(){
+    $(".home_header").height($(window).height());
+    var paddingTop = ($(".home_header").height() / 2 ) - $(".home_header_text").height()/2;
+    $(".home_header_text").css("padding-top",paddingTop);
+});
