@@ -136,8 +136,8 @@ $("#edit-level-form").on("submit",function(){
  $(document).ready(function(){
     
 
-    if ( $('#date_num_of_attempts_chart').length){
-            Highcharts.chart('date_num_of_attempts_chart', {
+    if ( $('#week_ancers').length){
+            Highcharts.chart('week_ancers', {
                 chart: {
                     backgroundColor: 'var(--black-mode-backgroud)',
                 
@@ -147,7 +147,7 @@ $("#edit-level-form").on("submit",function(){
                         color: '#FFF',
                         font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
                     },
-                    text: 'Number of Attempts in this year '
+                    text: 'Number of correct answers last week'
                 },
 
                 subtitle: {
@@ -170,7 +170,7 @@ $("#edit-level-form").on("submit",function(){
                             color: '#FFF',
                             font: '11px Trebuchet MS, Verdana, sans-serif'
                         },
-                        text: 'Number of Attempts'
+                        text: 'NUmber of correct answers'
                     }
                 },
                 
@@ -182,20 +182,10 @@ $("#edit-level-form").on("submit",function(){
                         }
                     },
                         categories: [
-                            'JAN',
-                            'FEB',
-                            'MAR',
-                            'APR',
-                            'MAY',
-                            "JUN",
-                            'JUL',
-                            'AUG',
-                            'SEP',
-                            'OCT',
-                            'NOV',
-                            'DEC'
-
-                            
+                            'week 1',
+                            'week 2',
+                            'week 3',
+                            'week 4',                           
                         ],
                         crosshair: true
                     },
@@ -208,13 +198,9 @@ $("#edit-level-form").on("submit",function(){
                     }  
                 },
                 series: [ {
-                    name: 'Attempts',
-                    data: [40, 35, 35, 25, 20, 10, 7, 10,5,4,2,1],
+                    name: 'correct answers',
+                    data: [10, 11, 8, 15],
                     
-                },{
-                    name: 'Duration',
-                    data: [60, 50, 44, 31, 20, 14, 14, 10,7,5,3,2],
-                    color:"#DB6574"
                 }],
                 tooltip: {
                         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
@@ -242,5 +228,232 @@ $("#edit-level-form").on("submit",function(){
 
             });
     }
+
+    if ( $('#date_num_of_attempts_chart').length){
+        Highcharts.chart('date_num_of_attempts_chart', {
+            chart: {
+                backgroundColor: 'var(--black-mode-backgroud)',
+            
+            },
+            title: {
+                style: {
+                    color: '#FFF',
+                    font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                },
+                text: 'Number of correct Attempts And Duration'
+            },
+
+            subtitle: {
+                style: {
+                    color: '#FFF',
+                    font: 'bold 10px "Trebuchet MS", Verdana, sans-serif'
+                },
+                text: '2019'
+            },
+
+            yAxis: {
+                labels: {
+                    style: {
+                        color: '#FFF',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                title: {
+                    style: {
+                        color: '#FFF',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    },
+                    text: 'Number of Attempts or Duration'
+                }
+            },
+            
+            xAxis: {
+                labels: {
+                    style: {
+                        color: '#FFF',
+                        font: '11px Trebuchet MS, Verdana, sans-serif'
+                    }
+                },
+                    categories: [
+                        'q 1',
+                        'q 2',
+                        'q 3',
+                        'q 4',  
+                        'q 5',
+                        'q 6',
+                        'q 7',
+                        'q 8',
+                        'q 9',
+                        'q 10',                         
+                    ],
+                    crosshair: true
+                },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                itemStyle: {
+                    color: '#FFF'
+                }  
+            },
+            series: [ {
+                name: 'Number of Attempts',
+                data: [15, 11, 12, 11,10,4,7,3,6,2],
+                
+            },{
+                name: 'Duration in secound',
+                data: [60, 60, 55, 60,65,50,40,20,22,10],
+                
+            }],
+            tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "../api/data.php",
+            data:{op:"get_num_of_q_ancers",u_id:$("#u_id").val()},
+           
+
+         }).done(function( msg ) {
+                console.log(msg);
+
+                var duce = jQuery.parseJSON(msg);
+
+
+                var QUESTION = duce[0][0].q;
+                var ANSWERED = duce[0][1].a;
+
+                $("#question").html(QUESTION);
+                $("#answered").html(ANSWERED);
+                console.log(QUESTION);
+                var q_id =[];
+                var att = [];
+                var dur = [];
+                var j =0;
+                for(var i=2;i<duce[0].length;i++){
+                    console.log(duce[0][i]);
+                    q_id[j] = parseInt(duce[0][i].q_id);
+                    att[j] = parseInt(duce[0][i].att);
+                    dur[j] = parseInt(duce[0][i].dur);
+                    j++;
+                }
+
+                console.log(dur[0]);
+
+                Highcharts.chart('date_num_of_attempts_chart', {
+                    chart: {
+                        backgroundColor: 'var(--black-mode-backgroud)',
+                    
+                    },
+                    title: {
+                        style: {
+                            color: '#FFF',
+                            font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+                        },
+                        text: 'Number of correct Attempts And Duration'
+                    },
+        
+                    subtitle: {
+                        style: {
+                            color: '#FFF',
+                            font: 'bold 10px "Trebuchet MS", Verdana, sans-serif'
+                        },
+                        text: '2019'
+                    },
+        
+                    yAxis: {
+                        labels: {
+                            style: {
+                                color: '#FFF',
+                                font: '11px Trebuchet MS, Verdana, sans-serif'
+                            }
+                        },
+                        title: {
+                            style: {
+                                color: '#FFF',
+                                font: '11px Trebuchet MS, Verdana, sans-serif'
+                            },
+                            text: 'Number of Attempts or Duration'
+                        }
+                    },
+                    
+                    xAxis: {
+                        labels: {
+                            style: {
+                                color: '#FFF',
+                                font: '11px Trebuchet MS, Verdana, sans-serif'
+                            }
+                        },
+                            categories: q_id,
+                            crosshair: true
+                        },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        itemStyle: {
+                            color: '#FFF'
+                        }  
+                    },
+                    series: [ {
+                        name: 'Number of Attempts',
+                        data: att,
+                        
+                    },{
+                        name: 'Duration in secound',
+                        data: dur,
+                        
+                    }],
+                    tooltip: {
+                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y} </b></td></tr>',
+                            footerFormat: '</table>',
+                            shared: true,
+                            useHTML: true
+                        },
+        
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
+                            },
+                            chartOptions: {
+                                legend: {
+                                    layout: 'horizontal',
+                                    align: 'center',
+                                    verticalAlign: 'bottom'
+                                }
+                            }
+                        }]
+                    }
+        
+                });
+
+         });
+}
     
  });

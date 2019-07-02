@@ -64,6 +64,23 @@
 									
 							}break;
 
+							case 'get_num_of_q_ancers':{
+								$NUM_q = DB::getInstance()->query("SELECT COUNT(*) as q FROM questions");
+								$q = $NUM_q->results();
+								$data = DB::getInstance()->query("SELECT COUNT(*) as a FROM answers WHERE user_id = ".intval(Input::get('u_id')));
+								$a=$data->results();
+
+								$da = DB::getInstance()->query("SELECT answers.duration dur , answers.num_of_attempts att , q_id as q_id FROM answers WHERE user_id = ".intval(Input::get('u_id')));
+								$d = $da->results();
+								
+								
+								$user[]=array_merge($q,$a,$d);
+								$json_merge = json_encode($user);
+								
+								echo $json_merge;
+									
+							}break;
+
 								case 'get-data-users':{
 									if(Input::get('page')){
 			    						$start = (Input::get('page') - 1) * $total_req_per_page;

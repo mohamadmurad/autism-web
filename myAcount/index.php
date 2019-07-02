@@ -77,19 +77,21 @@
                             <div class="col-lg-6 col-xlg-6 col-md-12" style="float:left;">
                                 <div class="card block">
 
-                                     <div id="date_num_of_attempts_chart"></div>
+                                <div id="week_ancers"></div>
 
                                 </div>
                             </div>
                             <div class="col-lg-6 col-xlg-6 col-md-12" style="float:right;">
                                 <div class="card block">
                                     <div class="">
-                                        <h1 class="h5 user_info"><span>Level : </span> 1</h1>
+                                        <h1 class="h5 user_info"><span>Level : </span> 2</h1>
                                         <hr>
-                                        <h1 class="h5 user_info"><span>Scoure : </span> 500</h1>
+                                        <h1 class="h5 user_info"><span>Scoure : </span> 1099</h1>
                                         <hr>
-                                        <h1 class="h5 user_info"><span>Number of Questions is Answered: </span> 50 <span> Of </span> 100 <span> Question</span></h1>
+                                        <h1 class="h5 user_info"><span>Number of Questions is Answered: </span> <i id="answered">10</i> <span> Of </span> <i id="question">10</i> <span> Question</span></h1>
+                                            <hr>
                                     </div>
+                                    <div id="date_num_of_attempts_chart"></div>
                                 </div>
                             </div>
                         </div>

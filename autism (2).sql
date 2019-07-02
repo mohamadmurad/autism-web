@@ -1,9 +1,9 @@
--- version 4.7.7
 -- phpMyAdmin SQL Dump
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2019 at 07:04 PM
+-- Generation Time: Jul 02, 2019 at 01:14 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -59,6 +59,22 @@ CREATE TABLE `answers` (
   `duration` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=ucs2;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`a_id`, `q_id`, `user_id`, `num_of_attempts`, `duration`, `date`) VALUES
+(1, 1, 1, 15, 60, '2019-06-01'),
+(2, 2, 1, 11, 60, '2019-06-02'),
+(3, 3, 1, 12, 55, '2019-06-04'),
+(4, 4, 1, 11, 60, '2019-06-05'),
+(5, 5, 1, 10, 65, '2019-06-12'),
+(6, 6, 1, 4, 50, '2019-06-20'),
+(7, 7, 1, 7, 40, '2019-06-18'),
+(8, 8, 1, 3, 20, '2019-06-27'),
+(9, 9, 1, 6, 22, '2019-06-28'),
+(10, 10, 1, 2, 10, '2019-06-30');
 
 -- --------------------------------------------------------
 
@@ -146,6 +162,26 @@ CREATE TABLE `questions` (
   `q_answer` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`q_id`, `q_name`, `q_answer`) VALUES
+(1, 'اعطيني الكرسي', 'الكرسي'),
+(2, 'وين الكرسي', 'الكرسي'),
+(3, 'اعطيني الطاولة', 'الطاولة'),
+(4, 'وين الطاولة', 'الطاولة'),
+(5, 'اعطيني تلفزيون', 'تلفزيون'),
+(6, 'وين تلفزيون', 'تلفزيون'),
+(7, 'اعطيني صوفاية', 'صوفاية'),
+(8, 'وين صوفاية', 'صوفاية'),
+(9, 'اعطيني الموبايل', 'الموبايل'),
+(10, 'وين الموبايل', 'الموبايل'),
+(11, 'اعطيني الكاسة', 'الكاسة'),
+(12, 'وين الكاسة', 'الكاسة'),
+(13, 'اعطيني كنباية', 'كنباية'),
+(14, 'اعطيني كنباية', 'كنباية');
+
 -- --------------------------------------------------------
 
 --
@@ -170,10 +206,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `full_name`, `join_date`, `birth_date`, `salt`, `user_pecs_level`, `created_by`, `profile_img`) VALUES
-(1, 'maram', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'maram bakarr', '2019-05-06', '2000-05-06', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', 2, 2, 'avatar.png'),
+(1, 'maram', 'c80c93b3d9a931f724589f37b41317d688299660', 'maram bakarr', '2019-05-06', '2000-05-06', 'HTr#!flL3wJ*cS*$MB9nyUCRX7HM3ijP', 2, 2, 'avatar.png'),
 (2, 'maram2', 'c225e9cd07bd96f904f32dfd37234ff6a4e1c2e3', 'mouaz Herafi', '2019-05-13', '2005-05-08', 'kcm4VKUw@0!HOUl5SfiGuQS?tFCn3Dfe', 1, 2, 'avatar.png'),
-(3, 'mhd', 'c80c93b3d9a931f724589f37b41317d688299660', 'mohamad', '2019-06-25', '2006-06-12', 'HTr#!flL3wJ*cS*$MB9nyUCRX7HM3ijP', 1, 2, 'avatar.png'),
-(4, 'sdsd', '7b54b32a1531996192ab80a8acfe2039ca930765', 'sss', '2019-06-27', '2019-06-07', '6o1@#W!u@xsy7onf09SKDshuiQKaSsVO', 1, 2, 'avatar.png');
+(3, 'mhd', 'c80c93b3d9a931f724589f37b41317d688299660', 'mohamad', '2019-06-25', '2000-01-10', 'HTr#!flL3wJ*cS*$MB9nyUCRX7HM3ijP', 1, 2, 'avatar.png');
 
 --
 -- Indexes for dumped tables
@@ -230,7 +265,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pecs`
@@ -242,13 +277,13 @@ ALTER TABLE `pecs`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `q_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
